@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qt.question.dao.mapper.StudentClassMapper">
+
+    <!--    插入班级数据-->
+    <insert id="insertStudentClass" parameterType="studentClass">
+        <selectKey keyColumn="classId" resultType="int" keyProperty="classId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO StudentClass (className, classAcademyId)
+        VALUES (#{className}, #{classAcademyId})
+    </insert>
+
+    <sql id="updateStudentClass_sql">
+        <if test="classStudentCount != null">classStudentCount =  classStudentCount + #{classStudentCount} ,</if>
+        <if test="classJoinCount != null">classJoinCount =  classJoinCount + #{classJoinCount} ,</if>
+        <if test="classGradeSum != null">classGradeSum = classGradeSum + #{classGradeSum} ,</if>
+        <if test="classTimeSum != null">classTimeSum = classTimeSum +  #{classTimeSum} ,</if>
+        classAcademyId = classAcademyId
+    </sql>
+
+    <!--更新班级数据-->
+    <update id="updateStudentClass" parameterType="studentClass">
+        UPDATE StudentClass SET
+        <include refid="updateStudentClass_sql"/>
+        WHERE classId = #{classId}
+    </update>
+
+    <!--    删除班级数据-->
+    <delete id="deleteStudentClass" parameterType="int">
+        DELETE
+        FROM StudentClass
+        WHERE classId = #{value}
+    </delete>
+
+    <!--    获得班级的数据-->
+    <select id="getStudentClass" parameterType="int" resultType="studentClass">
+        SELECT *
+        FROM StudentClass
+        WHERE classId = #{value}
+    </select>
+
+</mapper>

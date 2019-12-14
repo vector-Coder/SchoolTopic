@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qt.question.dao.mapper.MultipartTopicMapper">
+
+    <!--    插入判断题数据-->
+    <insert id="insertMultipartTopic" parameterType="multipartTopic">
+        INSERT INTO MultipartTopic(topicText, topicOptionA, topicOptionB, topicOptionC, topicOptionD, topicOptionE,
+                                   topicResult)
+        VALUES (#{topicText}, #{topicOptionA}, #{topicOptionB}, #{topicOptionC}, #{topicOptionD}, #{topicOptionE},
+                #{topicResult})
+    </insert>
+
+    <sql id="updateMultipartTopic_sql">
+        <if test="topicText != null">topicText = #{topicText},</if>
+        <if test="topicOptionA != null">topicOptionA = #{topicOptionA},</if>
+        <if test="topicOptionB != null">topicOptionB = #{topicOptionB},</if>
+        <if test="topicOptionC != null">topicOptionC = #{topicOptionC},</if>
+        <if test="topicOptionD != null">topicOptionD = #{topicOptionD},</if>
+        <if test="topicOptionE != null">topicOptionE = #{topicOptionE},</if>
+        <if test="topicResult != null">topicResult = #{topicResult},</if>
+        topicId = topicId
+    </sql>
+
+    <!--更新判断题的数据-->
+    <update id="updateMultipartTopic" parameterType="multipartTopic">
+        UPDATE MultipartTopic SET
+        <include refid="updateMultipartTopic_sql"/>
+        WHERE topicId = #{topicId}
+    </update>
+
+    <!--    删除判断题数据-->
+    <delete id="deleteMultipartTopic" parameterType="int">
+        DELETE
+        FROM MultipartTopic
+        WHERE topicId = #{value}
+    </delete>
+
+    <!--    获得判断题的数据-->
+    <select id="getMultipartTopic" parameterType="int" resultType="multipartTopic">
+        SELECT *
+        FROM MultipartTopic
+        LIMIT #{value} , 1
+    </select>
+
+    <!--    获得判断题目的答案-->
+    <select id="getMultipartTopicAnswer" parameterType="int" resultType="string">
+        SELECT topicResult
+        FROM MultipartTopic
+        WHERE topicId = #{value}
+    </select>
+
+    <!--    获得全部判断题的答案-->
+    <select id="getAllMultipartTopicAnswer" resultType="multipartTopic">
+        SELECT topicId, topicResult
+        FROM MultipartTopic
+    </select>
+
+    <select id="getMultipartTopicCount" resultType="int">
+        SELECT COUNT(*)
+        FROM MultipartTopic
+    </select>
+
+
+    <select id="getAllMultipartTopics" resultType="multipartTopic">
+        SELECT *
+        FROM MultipartTopic
+    </select>
+
+</mapper>

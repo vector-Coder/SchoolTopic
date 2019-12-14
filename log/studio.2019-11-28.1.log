@@ -1,0 +1,16 @@
+2019-11-28 12:18:09,252 INFO (SystemInit.java:78)- 配置方法执行完成
+2019-11-28 13:00:19,492 INFO (SystemInit.java:40)- 加载配置信息
+2019-11-28 13:01:16,705 INFO (SystemInit.java:40)- 加载配置信息
+2019-11-28 13:02:07,008 INFO (RadioTopicServiceImpl.java:70)- 获取全部单选题目的数量
+2019-11-28 13:02:36,320 INFO (SystemInit.java:46)- 加载全部题目信息
+2019-11-28 13:03:56,588 INFO (SystemInit.java:78)- 配置方法执行完成
+2019-11-28 13:52:47,620 INFO (SystemInit.java:40)- 加载配置信息
+2019-11-28 13:52:56,556 INFO (RadioTopicServiceImpl.java:70)- 获取全部单选题目的数量
+2019-11-28 13:52:58,773 INFO (SystemInit.java:46)- 加载全部题目信息
+2019-11-28 13:53:07,485 INFO (SystemInit.java:78)- 配置方法执行完成
+2019-11-28 13:54:27,610 INFO (SystemInit.java:40)- 加载配置信息
+2019-11-28 13:54:28,026 INFO (RadioTopicServiceImpl.java:70)- 获取全部单选题目的数量
+2019-11-28 13:54:28,156 INFO (SystemInit.java:46)- 加载全部题目信息
+2019-11-28 13:54:29,116 INFO (SystemInit.java:78)- 配置方法执行完成
+2019-11-28 13:55:24,341 INFO (SystemInit.java:40)- 加载配置信息
+2019-11-28 13:55:25,007 INFO (RadioTopicServiceImpl.java:70)- 获取全部单选题目的数量

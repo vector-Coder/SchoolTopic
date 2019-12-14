@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qt.question.dao.mapper.StudentMapper">
+
+    <resultMap id="studentMap" type="student">
+        <id property="studentId" column="studentId"/>
+        <result property="studentName" column="studentName"/>
+        <result property="studentNation" column="studentNation"/>
+        <result property="studentGender" column="studentGender"/>
+        <result property="studentMajor" column="studentMajor"/>
+        <result property="studentAnswerCount" column="studentAnswerCount"/>
+        <result property="studentAcademy" column="studentAcademy"/>
+        <result property="studentClass" column="studentClass"/>
+        <result property="studentPassword" column="studentPassword"/>
+        <association property="academy" javaType="academy">
+            <id property="academyId" column="academyId"/>
+            <result property="academyName" column="academyName"/>
+            <result property="academyJoinCount" column="academyJoinCount"/>
+            <result property="academyGradeSum" column="academyGradeSum"/>
+            <result property="academyTimeSum" column="academyTimeSum"/>
+            <result property="academyStudentCount" column="academyStudentCount"/>
+        </association>
+        <association property="stuClass" javaType="studentClass">
+            <id property="classId" column="classId"/>
+            <result property="className" column="className"/>
+            <result property="classAcademyId" column="classAcademyId"/>
+            <result property="classJoinCount" column="classJoinCount"/>
+            <result property="classGradeSum" column="classGradeSum"/>
+            <result property="classTimeSum" column="classTimeSum"/>
+            <result property="classStudentCount" column="classStudentCount"/>
+        </association>
+        <collection property="gradeList" ofType="Grade" select="getStudentGrade" column="studentId">
+        </collection>
+    </resultMap>
+
+
+    <select id="getStudentGrade" parameterType="long" resultMap="GradeMap">
+        SELECT *
+        FROM Grade
+        WHERE studentId = #{value}
+    </select>
+
+    <resultMap id="GradeMap" type="Grade">
+        <id property="studentId" column="studentId"/>
+        <result property="studentGrade" column="studentGrade"/>
+        <result property="studentSpendTime" column="studentSpendTime"/>
+        <result property="studentGradeIndex" column="studentGradeIndex"/>
+    </resultMap>
+
+    <!--    插入学院数据-->
+    <insert id="insertStudent" parameterType="student">
+        INSERT INTO Student (studentId, studentName, studentNation, studentGender, studentMajor, studentAcademy,
+                             studentClass, studentPassword)
+        VALUES (#{studentId}, #{studentName}, #{studentNation}, #{studentGender}, #{studentMajor}, #{studentAcademy},
+                #{studentClass}, #{studentPassword})
+    </insert>
+
+
+    <!--更新学院数据-->
+    <update id="updateStudent" parameterType="student">
+        UPDATE Student
+        <set>
+            <if test="studentAnswerCount != null">
+                studentAnswerCount = studentAnswerCount + #{studentAnswerCount}
+            </if>
+        </set>
+        WHERE studentId = #{studentId}
+    </update>
+
+    <!--    删除学院数据-->
+    <delete id="deleteStudent" parameterType="long">
+        DELETE
+        FROM Student
+        WHERE studentId = #{value}
+    </delete>
+
+    <!--    获得学院的数据-->
+    <select id="getStudent" parameterType="long" resultMap="studentMap">
+        SELECT Student.*, Academy.*, StudentClass.*
+        FROM Student
+                 LEFT JOIN Academy ON acdemyId = studentAcademy
+                 LEFT JOIN StudentClass ON studentClass = classId
+        WHERE studentId = #{value}
+    </select>
+
+    <!--    获取班级的学生信息-->
+    <select id="getClassStudent" parameterType="int" resultMap="studentMap">
+        SELECT Student.*, Academy.*, StudentClass.*
+        FROM Student
+                 LEFT JOIN Academy ON acdemyId = studentAcademy
+                 LEFT JOIN StudentClass ON studentClass = classId
+        WHERE studentClass = #{value}
+    </select>
+
+    <!--    获取学院的班级信息-->
+    <select id="getAcademyStudent" parameterType="int" resultMap="studentMap">
+        SELECT Student.*, Academy.*, StudentClass.*
+        FROM Student
+                 LEFT JOIN Academy ON acdemyId = studentAcademy
+                 LEFT JOIN StudentClass ON studentClass = classId
+        WHERE studentAcademy = #{value}
+    </select>
+
+</mapper>

@@ -1,0 +1,12 @@
+2019-11-26 18:31:21,689 INFO (SystemInit.java:35)- 加载配置信息
+2019-11-26 18:31:22,209 INFO (RadioTopicServiceImpl.java:69)- 获取全部单选题目的数量
+2019-11-26 18:31:22,489 INFO (SystemInit.java:41)- 加载全部题目信息
+2019-11-26 18:31:23,102 INFO (RadioTopicServiceImpl.java:95)- 获取全部题目信息
+2019-11-26 18:31:23,570 INFO (SystemInit.java:47)- 配置方法执行完成
+2019-11-26 18:32:01,870 INFO (SystemInit.java:35)- 加载配置信息
+2019-11-26 18:32:02,478 INFO (RadioTopicServiceImpl.java:69)- 获取全部单选题目的数量
+2019-11-26 18:32:02,703 INFO (SystemInit.java:41)- 加载全部题目信息
+2019-11-26 18:32:03,233 INFO (RadioTopicServiceImpl.java:95)- 获取全部题目信息
+2019-11-26 18:32:03,539 INFO (SystemInit.java:47)- 配置方法执行完成
+2019-11-26 18:32:03,764 INFO (StudentServiceImpl.java:104)- 判断得分：9 单选得分：7 多选得分：0
+2019-11-26 18:32:03,765 INFO (StudentServiceImpl.java:116)- 计算学生的分数完成:16

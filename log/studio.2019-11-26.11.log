@@ -1,0 +1,13 @@
+2019-11-26 18:32:03,766 INFO (StudentServiceImpl.java:121)- 开始更新数据
+2019-11-26 18:32:03,801 INFO (StudentServiceImpl.java:132)- 学生成绩已提交：201926803001
+2019-11-26 19:36:49,839 INFO (SystemInit.java:35)- 加载配置信息
+2019-11-26 19:36:50,336 INFO (RadioTopicServiceImpl.java:69)- 获取全部单选题目的数量
+2019-11-26 19:36:50,560 INFO (SystemInit.java:41)- 加载全部题目信息
+2019-11-26 19:36:51,117 INFO (RadioTopicServiceImpl.java:96)- 获取全部题目信息
+2019-11-26 19:36:51,506 INFO (SystemInit.java:47)- 配置方法执行完成
+2019-11-26 19:36:51,893 INFO (StudentServiceImpl.java:104)- 判断得分：10 单选得分：9 多选得分：0
+2019-11-26 19:36:51,894 INFO (StudentServiceImpl.java:116)- 计算学生的分数完成:19
+2019-11-26 19:36:51,896 INFO (StudentServiceImpl.java:121)- 开始更新数据
+2019-11-26 19:36:51,937 INFO (StudentServiceImpl.java:132)- 学生成绩已提交：201926803001
+2019-11-26 20:33:29,864 INFO (SystemInit.java:40)- 加载配置信息
+2019-11-26 20:33:30,411 INFO (RadioTopicServiceImpl.java:70)- 获取全部单选题目的数量

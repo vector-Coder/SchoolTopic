@@ -1,0 +1,13 @@
+2019-11-26 12:01:33,867 INFO (RadioTopicServiceImpl.java:67)- 获取全部单选题目的数量
+2019-11-26 12:01:34,460 INFO (SystemInit.java:39)- 加载全部题目信息
+2019-11-26 12:01:35,725 INFO (RadioTopicServiceImpl.java:94)- 获取全部题目信息
+2019-11-26 12:01:37,132 INFO (SystemInit.java:45)- 配置方法执行完成
+2019-11-26 12:01:37,216 INFO (RadioTopicServiceImpl.java:88)- 计算出总分 :2
+2019-11-26 17:00:58,262 INFO (SystemInit.java:35)- 鍔犺浇閰嶇疆淇℃伅
+2019-11-26 17:00:58,649 INFO (RadioTopicServiceImpl.java:69)- 鑾峰彇鍏ㄩ儴鍗曢�夐鐩殑鏁伴噺
+2019-11-26 17:00:58,966 INFO (SystemInit.java:41)- 鍔犺浇鍏ㄩ儴棰樼洰淇℃伅
+2019-11-26 17:00:59,714 INFO (RadioTopicServiceImpl.java:96)- 鑾峰彇鍏ㄩ儴棰樼洰淇℃伅
+2019-11-26 17:01:00,086 INFO (SystemInit.java:47)- 閰嶇疆鏂规硶鎵ц瀹屾垚
+2019-11-26 17:04:01,782 INFO (SystemInit.java:35)- 鍔犺浇閰嶇疆淇℃伅
+2019-11-26 17:04:02,641 INFO (RadioTopicServiceImpl.java:69)- 鑾峰彇鍏ㄩ儴鍗曢�夐鐩殑鏁伴噺
+2019-11-26 17:04:03,096 INFO (SystemInit.java:41)- 鍔犺浇鍏ㄩ儴棰樼洰淇℃伅

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qt.question.dao.mapper.AcademyMapper">
+
+    <!--    插入学院数据-->
+    <insert id="insertAcademy" parameterType="academy">
+        <selectKey keyColumn="academyId" resultType="int" keyProperty="academyId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO Academy (academyName)
+        VALUES (#{academyName})
+    </insert>
+
+    <sql id="updateAcademy_sql">
+        <if test="academyStudentCount != null">academyStudentCount = academyStudentCount + #{academyStudentCount},</if>
+        <if test="academyJoinCount != null">academyJoinCount = academyJoinCount + #{academyJoinCount},</if>
+        <if test="academyGradeSum != null">academyGradeSum = academyGradeSum + #{academyGradeSum},</if>
+        <if test="academyTimeSum != null ">academyTimeSum = academyTimeSum + #{academyTimeSum},</if>
+        academyId = academyId
+</sql>
+
+    <!--更新学院数据-->
+    <update id="updateAcademy" parameterType="academy">
+        UPDATE Academy SET
+        <include refid="updateAcademy_sql"/>
+        WHERE academyId = #{academyId}
+    </update>
+
+    <!--    删除学院数据-->
+    <delete id="deleteAcademy" parameterType="int">
+        DELETE
+        FROM Academy
+        WHERE academyId = #{academyId}
+    </delete>
+
+    <!--    获得学院的数据-->
+    <select id="getAcademyById" parameterType="int" resultType="academy">
+        SELECT *
+        FROM Academy
+        WHERE academyId = #{academyId}
+    </select>
+
+</mapper>

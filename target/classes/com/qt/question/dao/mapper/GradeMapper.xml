@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qt.question.dao.mapper.GradeMapper">
+
+    <resultMap id="BaseResultMap" type="Grade">
+        <id column="studentId" property="studentId"/>
+        <result column="studentGrade" property="studentGrade"/>
+        <result column="studentSpendTime" property="studentSpendTime"/>
+        <result column="studentGradeIndex" property="studentGradeIndex"/>
+    </resultMap>
+
+
+    <sql id="where_sql">
+        <where>
+            <if test="studentId != null">
+                Grade.studentId = #{studentId}
+            </if>
+            <if test="studentGradeIndex != null">
+                AND Grade.studentGradeIndex = #{studentGradeIndex}
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="getStudentGradeTime" parameterType="Grade" resultMap="BaseResultMap">
+        SELECT *
+        FROM Grade
+        <include refid="where_sql"/>
+    </select>
+
+    <update id="updateGrade" parameterType="Grade">
+        UPDATE Grade
+        <set>
+            <if test="studentId != null">
+                Grade.studentId = #{studentId},
+            </if>
+            <if test="studentGradeIndex != null">
+                Grade.studentGradeIndex = #{studentGradeIndex}
+            </if>
+        </set>
+        <include refid="where_sql"/>
+    </update>
+
+
+    <delete id="deleteGrade" parameterType="Grade">
+        DELETE FROM Grade
+        <include refid="where_sql"/>
+    </delete>
+
+
+    <insert id="insertGrade" parameterType="Grade">
+        INSERT INTO Grade (studentId, studentGrade, studentSpendTime, studentGradeIndex)
+        VALUES (#{studentId}, #{studentGrade}, #{studentSpendTime}, #{studentGradeIndex})
+    </insert>
+
+
+    <select id="getStudentGrade" parameterType="int" resultMap="BaseResultMap">
+        SELECT *
+        FROM Grade
+        WHERE studentId = #{studentId}
+    </select>
+
+</mapper>

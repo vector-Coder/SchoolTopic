@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--导入配置包-->
+    <context:property-placeholder ignore-unresolvable="true" location="classpath:config/jdbc.properties"/>
+
+    <!--    扫描工具类-->
+    <context:component-scan base-package="com.qt.question.util"/>
+    <!--    扫描工具类-->
+    <context:component-scan base-package="com.qt.question.dao.mapper"/>
+
+    <!--    扫描初始化包-->
+    <context:component-scan base-package="com.qt.question.init"/>
+    <!--    扫描配置类-->
+    <context:component-scan base-package="com.qt.question.config"/>
+
+    <!-- 配置内置数据源
+    47.106.199.169:3306
+    -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.Driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.name}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--配置sqlSessionFactory-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--加载mybatis的配置文件-->
+        <property name="configLocation" value="classpath:config/mybatis/mybatisConfig.xml"/>
+        <!--加载数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--统一的包扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--配置要扫描的包-->
+        <property name="basePackage" value="com.qt.question.dao.mapper"/>
+        <!--配置数据源-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+
+    <!--配置service层 自动扫描  注解配置-->
+    <context:component-scan base-package="com.qt.question.service.impl"/>
+
+    <!--配置事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--配置数据源-->
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 通知类交给Spring管理 -->
+    <!--<bean id="logger" class="com.SSM.Service.ProxyManager.StudioProxy"/>-->
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <tx:method name="cal*"/>
+            <tx:method name="get*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="find*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="select*" read-only="true" propagation="SUPPORTS"/>
+            <tx:method name="delete*"/>
+            <tx:method name="update*"/>
+            <tx:method name="insert*"/>
+            <tx:method name="set*"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- xml配置aop切面编程 -->
+    <!-- 切面配置 -->
+    <aop:config>
+        <!--配置切入点表达式-->
+        <aop:pointcut expression="execution(* com.qt.question.service.impl.*.*(..))" id="mapper"/>
+        <!--配置事务通知和切入点之间的联系-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="mapper"/>
+    </aop:config>
+</beans>

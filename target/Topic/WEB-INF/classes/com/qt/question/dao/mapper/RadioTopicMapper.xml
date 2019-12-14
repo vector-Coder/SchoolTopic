@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qt.question.dao.mapper.RadioTopicMapper">
+
+    <!--    插入判断题数据-->
+    <insert id="insertRadioTopic" parameterType="radioTopic">
+        INSERT INTO RadioTopic(topicText, topicOptionA, topicOptionB, topicOptionC, topicOptionD, topicResult)
+        VALUES (#{topicText}, #{topicOptionA}, #{topicOptionB}, #{topicOptionC}, #{topicOptionD}, #{topicResult})
+    </insert>
+
+    <sql id="updateRadioTopic_sql">
+        <if test="topicId != null">topicId = #{topicId},</if>
+        <if test="topicText != null">topicText = #{topicText},</if>
+        <if test="topicOptionA != null">topicOptionA = #{topicOptionA},</if>
+        <if test="topicOptionB != null">topicOptionB = #{topicOptionB},</if>
+        <if test="topicOptionC != null">topicOptionC = #{topicOptionC},</if>
+        <if test="topicOptionD != null">topicOptionD = #{topicOptionD},</if>
+        <if test="topicResult != null">topicResult = #{topicResult},</if>
+        topicId = topicId
+    </sql>
+
+    <!--更新判断题的数据-->
+    <update id="updateRadioTopic" parameterType="radioTopic">
+        UPDATE RadioTopic SET
+        <include refid="updateRadioTopic_sql"/>
+        WHERE topicId = #{topicId}
+    </update>
+
+    <!--    删除判断题数据-->
+    <delete id="deleteRadioTopic" parameterType="int">
+        DELETE
+        FROM RadioTopic
+        WHERE topicId = #{value}
+    </delete>
+
+    <!--    获得判断题的数据-->
+    <select id="getRadioTopic" parameterType="int" resultType="radioTopic">
+        SELECT *
+        FROM RadioTopic
+        LIMIT #{value} , 1
+    </select>
+
+    <!--    获得判断题目的答案-->
+    <select id="getRadioTopicAnswer" parameterType="int" resultType="string">
+        SELECT topicResult
+        FROM RadioTopic
+        WHERE topicId = #{value}
+    </select>
+
+
+    <!--    获得全部判断题的答案-->
+    <select id="getAllRadioTopicAnswer" resultType="radioTopic">
+        SELECT topicId, topicResult
+        FROM RadioTopic
+    </select>
+
+    <select id="getRadioTopicCount" resultType="int">
+        SELECT COUNT(*)
+        FROM RadioTopic
+    </select>
+
+    <select id="getAllRadioTopics" resultType="radioTopic">
+        SELECT *
+        FROM RadioTopic
+    </select>
+
+</mapper>

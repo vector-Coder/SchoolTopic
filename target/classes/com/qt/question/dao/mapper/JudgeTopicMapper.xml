@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qt.question.dao.mapper.JudgeTopicMapper">
+
+    <!--    插入判断题数据-->
+    <insert id="insertJudgeTopic" parameterType="judgeTopic">
+        INSERT INTO JudgeTopic(topicText, topicResult)
+        VALUES (#{topicText}, #{topicResult})
+    </insert>
+
+    <sql id="updateJudgeTopic_sql">
+        <if test="topicText != null">topicText = #{topicText},</if>
+        <if test="topicResult != null">topicResult = #{topicResult},</if>
+        topicId = topicId
+    </sql>
+
+    <!--更新判断题的数据-->
+    <update id="updateJudgeTopic" parameterType="judgeTopic">
+        UPDATE JudgeTopic SET
+        <include refid="updateJudgeTopic_sql"/>
+        WHERE topicId = #{topicId}
+    </update>
+
+    <!--    删除判断题数据-->
+    <delete id="deleteJudgeTopic" parameterType="int">
+        DELETE
+        FROM JudgeTopic
+        WHERE topicId = #{value}
+    </delete>
+
+    <!--    获得判断题的数据-->
+    <select id="getJudgeTopic" parameterType="int" resultType="judgeTopic">
+        SELECT *
+        FROM JudgeTopic
+        LIMIT #{value} , 1
+    </select>
+
+    <!--    获得判断题目的答案-->
+    <select id="getJudgeTopicAnswer" parameterType="int" resultType="string">
+        SELECT topicResult
+        FROM JudgeTopic
+        WHERE topicId = #{value}
+    </select>
+
+
+    <!--    获得全部判断题的答案-->
+    <select id="getAllJudgeTopicAnswer" resultType="judgeTopic">
+        SELECT JudgeTopic.topicResult, JudgeTopic.topicId
+        FROM JudgeTopic
+    </select>
+
+
+    <select id="getJudgeTopicsCount" resultType="int">
+        SELECT COUNT(*)
+        FROM JudgeTopic
+    </select>
+
+    <select id="getAllJudgeTopics" resultType="judgeTopic">
+        SELECT *
+        FROM JudgeTopic
+    </select>
+
+</mapper>

@@ -1,0 +1,6 @@
+2019-11-26 20:33:30,706 INFO (SystemInit.java:46)- 加载全部题目信息
+2019-11-26 20:33:31,748 INFO (SystemInit.java:78)- 配置方法执行完成
+2019-11-26 20:33:32,076 INFO (StudentServiceImpl.java:104)- 判断得分：0 单选得分：5 多选得分：0
+2019-11-26 20:33:32,077 INFO (StudentServiceImpl.java:116)- 计算学生的分数完成:5
+2019-11-26 20:33:32,078 INFO (StudentServiceImpl.java:121)- 开始更新数据
+2019-11-26 20:33:32,112 INFO (StudentServiceImpl.java:132)- 学生成绩已提交：201926803001
